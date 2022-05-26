@@ -1,2 +1,2 @@
 # RealEstateManager
-<img type="image/svg" src="https://github.com/LucasGitHubz/RealEstateManager/score"/>
+<img type="image/svg" src="https://byob.yarr.is/LucasGitHubz/RealEstateManager/score"/>
