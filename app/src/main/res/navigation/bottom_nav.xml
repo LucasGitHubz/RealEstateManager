@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav"
+    app:startDestination="@id/propertyViewFragment">
+    <fragment
+        android:id="@+id/propertyViewFragment"
+        android:name="com.example.realestatemanager.ui.property.PropertyViewFragment"
+        tools:layout="@layout/fragment_property_view" />
+    <fragment
+        android:id="@+id/mapViewFragment"
+        android:name="com.example.realestatemanager.ui.map.MapViewFragment"
+        tools:layout="@layout/fragment_map_view" />
+    <fragment
+        android:id="@+id/favoriteViewFragment"
+        android:name="com.example.realestatemanager.ui.favorite.FavoriteViewFragment"
+        tools:layout="@layout/fragment_favorite_view" />
+</navigation>

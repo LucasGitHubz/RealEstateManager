@@ -1,4 +1,4 @@
-package com.example.realestatemanager.ui
+package com.example.realestatemanager.ui.property
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

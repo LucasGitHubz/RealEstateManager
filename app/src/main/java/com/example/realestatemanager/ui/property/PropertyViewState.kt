@@ -1,4 +1,4 @@
-package com.example.realestatemanager.ui
+package com.example.realestatemanager.ui.property
 
 import com.example.realestatemanager.model.Property
 import com.example.realestatemanager.redux.State

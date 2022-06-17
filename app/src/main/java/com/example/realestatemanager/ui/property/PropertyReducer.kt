@@ -1,4 +1,4 @@
-package com.example.realestatemanager.ui
+package com.example.realestatemanager.ui.property
 
 import android.util.Log
 import com.example.realestatemanager.redux.Reducer

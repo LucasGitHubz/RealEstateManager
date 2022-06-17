@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/propertyViewFragment"
+        android:title="Property View"
+        android:icon="@drawable/ic_house" />
+    <item
+        android:id="@+id/mapViewFragment"
+        android:title="Map View"
+        android:icon="@drawable/ic_map" />
+    <item
+        android:id="@+id/favoriteViewFragment"
+        android:title="Favorite View"
+        android:icon="@drawable/ic_favorite" />
+</menu>
