@@ -38,7 +38,7 @@ class FavoriteViewFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fragmentFavoriteViewBinding?.loadPropertyBtn?.setOnClickListener {
-            viewModel.propertyFetchButtonTapped()
+            viewModel.fetchProperties()
         }
     }
 

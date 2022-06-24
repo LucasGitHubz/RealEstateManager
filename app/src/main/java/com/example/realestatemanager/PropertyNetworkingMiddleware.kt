@@ -17,13 +17,13 @@ class PropertyNetworkingMiddleware(
         store: Store<PropertyViewState, PropertyAction>
     ) {
         when (action) {
-            is PropertyAction.FetchPropertyButtonTapped -> {
+            is PropertyAction.FetchProperties -> {
                 store.dispatch(PropertyAction.FetchingStarted)
 
-                val isSuccessful = propertyRepository.fetchProperty()
+                val properties = propertyRepository.fetchProperty()
 
-                if (isSuccessful) {
-                    store.dispatch(PropertyAction.FetchingCompleted)
+                if (properties.isNotEmpty()) {
+                    store.dispatch(PropertyAction.FetchingCompleted(properties))
                 } else {
                     store.dispatch(PropertyAction.FetchingFailed(null))
                 }

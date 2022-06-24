@@ -4,9 +4,8 @@ import com.example.realestatemanager.model.Property
 import com.example.realestatemanager.redux.Action
 
 sealed class PropertyAction : Action {
-    data class PropertyFetched(val newProperty: Property) : PropertyAction()
-    object FetchPropertyButtonTapped : PropertyAction()
+    object FetchProperties : PropertyAction()
     object FetchingStarted : PropertyAction()
-    object FetchingCompleted : PropertyAction()
+    data class FetchingCompleted(val properties: List<Property>) : PropertyAction()
     data class FetchingFailed(val error: Throwable?) : PropertyAction()
 }

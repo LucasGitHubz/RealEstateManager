@@ -8,14 +8,11 @@ class PropertyReducer : Reducer<PropertyViewState, PropertyAction> {
         Log.v("PropertyReducer", "Processing action: $action")
 
         return when (action) {
-            is PropertyAction.PropertyFetched -> {
-                stateWithNewProperty(currentState, action)
-            }
             PropertyAction.FetchingStarted -> {
                 stateAfterFetchingStarted(currentState)
             }
-            PropertyAction.FetchingCompleted -> {
-                stateAfterFetchingCompleted(currentState)
+            is PropertyAction.FetchingCompleted -> {
+                stateAfterFetchingCompleted(currentState, action)
             }
             is PropertyAction.FetchingFailed -> {
                 stateAfterFetchingFailed(currentState)
@@ -24,18 +21,14 @@ class PropertyReducer : Reducer<PropertyViewState, PropertyAction> {
         }
     }
 
-    private fun stateWithNewProperty(currentState: PropertyViewState, action: PropertyAction.PropertyFetched) =
-        currentState.copy(
-            property = action.newProperty,
-        )
-
     private fun stateAfterFetchingStarted(currentState: PropertyViewState) =
         currentState.copy(
             showProgressBar = true
         )
 
-    private fun stateAfterFetchingCompleted(currentState: PropertyViewState) =
+    private fun stateAfterFetchingCompleted(currentState: PropertyViewState, action: PropertyAction.FetchingCompleted) =
         currentState.copy(
+            properties = action.properties,
             showProgressBar = false
         )
 

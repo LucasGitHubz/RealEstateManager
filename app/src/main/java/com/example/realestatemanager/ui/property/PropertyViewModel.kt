@@ -24,15 +24,8 @@ class PropertyViewModel : ViewModel() {
 
     val viewState: StateFlow<PropertyViewState> = store.state
 
-    fun propertyFetched(newProperty: Property) {
-        val action = PropertyAction.PropertyFetched(newProperty)
-        viewModelScope.launch {
-            store.dispatch(action)
-        }
-    }
-
-    fun propertyFetchButtonTapped() {
-        val action = PropertyAction.FetchPropertyButtonTapped
+    fun fetchProperties() {
+        val action = PropertyAction.FetchProperties
         viewModelScope.launch {
             store.dispatch(action)
         }

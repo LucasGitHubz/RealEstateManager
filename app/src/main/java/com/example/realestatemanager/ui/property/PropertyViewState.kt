@@ -4,7 +4,7 @@ import com.example.realestatemanager.model.Property
 import com.example.realestatemanager.redux.State
 
 data class PropertyViewState(
-    val property: Property = Property(),
+    val properties: List<Property> = ArrayList(),
     val showProgressBar: Boolean = false,
     val errorMessage: String? = null
 ) : State
