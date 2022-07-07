@@ -1,9 +1,15 @@
 package com.example.realestatemanager.model
 
+import android.content.ContentValues
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity
 class Property() : Parcelable {
+    @PrimaryKey
+    var id: String = ""
     var address: String? = ""
     var description: String? = ""
     var entryDate: String? = ""
@@ -19,6 +25,7 @@ class Property() : Parcelable {
     var type: String? = ""
 
     constructor(parcel: Parcel) : this() {
+        id = parcel.readString().toString()
         address = parcel.readString()
         description = parcel.readString()
         entryDate = parcel.readString()
@@ -35,6 +42,7 @@ class Property() : Parcelable {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(id)
         parcel.writeString(address)
         parcel.writeString(description)
         parcel.writeString(entryDate)
@@ -62,6 +70,26 @@ class Property() : Parcelable {
         override fun newArray(size: Int): Array<Property?> {
             return arrayOfNulls(size)
         }
-    }
 
+        fun fromContentValues(values: ContentValues): Property {
+            var property: Property = Property()
+
+            if (values.containsKey("id")) property.id = values.getAsString("id")
+            if (values.containsKey("address")) property.address = values.getAsString("address")
+            if (values.containsKey("description")) property.description = values.getAsString("description")
+            if (values.containsKey("entryDate")) property.entryDate = values.getAsString("entryDate")
+            if (values.containsKey("saleDate")) property.saleDate = values.getAsString("saleDate")
+            if (values.containsKey("estateAgent")) property.estateAgent = values.getAsString("estateAgent")
+            if (values.containsKey("images")) property.images = values.get("images") as List<String>?
+            if (values.containsKey("price")) property.price = values.getAsDouble("price")
+            if (values.containsKey("beds")) property.beds = values.getAsInteger("beds")
+            if (values.containsKey("rooms")) property.rooms = values.getAsInteger("rooms")
+            if (values.containsKey("bathrooms")) property.bathrooms = values.getAsInteger("bathrooms")
+            if (values.containsKey("status")) property.status = values.getAsBoolean("status")
+            if (values.containsKey("surface")) property.surface = values.getAsDouble("surface")
+            if (values.containsKey("type")) property.type = values.getAsString("type")
+
+            return property
+        }
+    }
 }

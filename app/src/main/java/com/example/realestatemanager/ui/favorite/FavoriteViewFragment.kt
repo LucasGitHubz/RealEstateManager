@@ -14,18 +14,9 @@ import kotlinx.coroutines.flow.collect
 
 class FavoriteViewFragment: Fragment() {
     private var fragmentFavoriteViewBinding: FragmentFavoriteViewBinding? = null
-    private lateinit var viewModel: PropertyViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        viewModel = ViewModelProvider(this)[PropertyViewModel::class.java]
-
-        lifecycleScope.launchWhenResumed {
-            viewModel.viewState.collect { viewState ->
-                processViewState(viewState)
-            }
-        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -37,19 +28,11 @@ class FavoriteViewFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fragmentFavoriteViewBinding?.loadPropertyBtn?.setOnClickListener {
-            viewModel.fetchProperties()
-        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         fragmentFavoriteViewBinding = null
         super.onDestroyView()
-    }
-
-    private fun processViewState(viewState: PropertyViewState) {
-        fragmentFavoriteViewBinding?.propertyLl?.visibility = if (viewState.showProgressBar) View.GONE else View.VISIBLE
-        fragmentFavoriteViewBinding?.propertyProgressBar?.visibility = if (viewState.showProgressBar) View.VISIBLE else View.GONE
     }
 }

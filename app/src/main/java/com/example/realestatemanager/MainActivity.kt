@@ -7,12 +7,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.realestatemanager.databinding.ActivityMainBinding
+import com.example.realestatemanager.model.Property
 import com.example.realestatemanager.ui.favorite.FavoriteViewFragment
 import com.example.realestatemanager.ui.map.MapViewFragment
 import com.example.realestatemanager.ui.property.PropertyViewFragment
 import com.example.realestatemanager.ui.property.PropertyViewModel
 import com.example.realestatemanager.ui.property.PropertyViewState
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.flow.collect
 
 class MainActivity : AppCompatActivity() {
@@ -38,13 +41,28 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigationView = binding.bottomNav
         setBottomBar()
+        val db = Firebase.firestore
+        for (i in 0..8) {
+            var property = Property()
+            db.collection("Properties")
+                .add(property)
+                .addOnSuccessListener {
+                    val washingtonRef = db.collection("Properties").document(it.id)
+                    washingtonRef
+                        .update("id", it.id)
+                }
+                .addOnFailureListener {
+                    println("testss2 ${it.localizedMessage}")
+                }
+        }
+
     }
 
     private fun setBottomBar() {
         bottomNavigationView.setOnItemSelectedListener {
             fragment = fragments[it.itemId]
-            fragment?.let {
-                supportFragmentManager.beginTransaction().replace(R.id.container_view_fl, it).commit()
+            fragment?.let { fragment ->
+                supportFragmentManager.beginTransaction().replace(R.id.container_view_fl, fragment).commit()
             }
             return@setOnItemSelectedListener true
         }

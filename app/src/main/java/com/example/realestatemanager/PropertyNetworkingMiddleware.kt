@@ -1,8 +1,6 @@
 package com.example.realestatemanager
 
-import com.example.realestatemanager.redux.Action
 import com.example.realestatemanager.redux.Middleware
-import com.example.realestatemanager.redux.State
 import com.example.realestatemanager.redux.Store
 import com.example.realestatemanager.ui.property.PropertyAction
 import com.example.realestatemanager.ui.property.PropertyViewState
@@ -20,7 +18,7 @@ class PropertyNetworkingMiddleware(
             is PropertyAction.FetchProperties -> {
                 store.dispatch(PropertyAction.FetchingStarted)
 
-                val properties = propertyRepository.fetchProperty()
+                val properties = propertyRepository.fetchProperties()
 
                 if (properties.isNotEmpty()) {
                     store.dispatch(PropertyAction.FetchingCompleted(properties))
