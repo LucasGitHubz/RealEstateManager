@@ -22,7 +22,7 @@ class PropertyRecyclerViewAdapter(private var properties: List<Property>, privat
     override fun onBindViewHolder(holder: PropertyViewHolder, position: Int) {
         val property = properties[position]
 
-        if (!property.images.isNullOrEmpty()) {
+        if (!property.images.isNullOrEmpty() && !property.images?.get(0).isNullOrBlank()) {
             Picasso.get().load(property.images!![0]).into(holder.propertyIV)
         }
         holder.priceTV.text = "${property.price} $"
