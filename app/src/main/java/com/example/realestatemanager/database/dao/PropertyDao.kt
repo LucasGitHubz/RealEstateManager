@@ -2,10 +2,7 @@ package com.example.realestatemanager.database.dao
 
 import android.database.Cursor
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.example.realestatemanager.model.Property
 
 @Dao
@@ -16,7 +13,7 @@ interface PropertyDao {
     @Query("SELECT * FROM Property")
     fun getPropertiesWithCursor() : Cursor
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertProperties(properties: List<Property>)
 
     @Insert

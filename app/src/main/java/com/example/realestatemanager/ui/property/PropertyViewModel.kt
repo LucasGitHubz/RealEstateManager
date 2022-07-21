@@ -1,10 +1,13 @@
 package com.example.realestatemanager.ui.property
 
+import android.content.Context
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.realestatemanager.PropertyMiddleware
 import com.example.realestatemanager.PropertyNetworkingMiddleware
 import com.example.realestatemanager.PropertyService
+import com.example.realestatemanager.database.RealEstateManagerDatabase
 import com.example.realestatemanager.model.Property
 import com.example.realestatemanager.redux.Store
 import kotlinx.coroutines.flow.StateFlow
@@ -24,10 +27,14 @@ class PropertyViewModel : ViewModel() {
 
     val viewState: StateFlow<PropertyViewState> = store.state
 
-    fun fetchProperties() {
-        val action = PropertyAction.FetchProperties
+    fun sendAction(action: PropertyAction) {
         viewModelScope.launch {
             store.dispatch(action)
         }
+    }
+
+    fun getPropertiesFromRoomDatabase(context: Context): LiveData<List<Property>> {
+        val database = RealEstateManagerDatabase.getInstance(context)
+        return database.propertyDao().getProperties()
     }
 }

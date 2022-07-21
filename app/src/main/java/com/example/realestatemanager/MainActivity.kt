@@ -17,6 +17,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.flow.collect
+import java.util.*
+import kotlin.collections.HashMap
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -41,21 +43,6 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigationView = binding.bottomNav
         setBottomBar()
-        val db = Firebase.firestore
-        for (i in 0..8) {
-            var property = Property()
-            db.collection("Properties")
-                .add(property)
-                .addOnSuccessListener {
-                    val washingtonRef = db.collection("Properties").document(it.id)
-                    washingtonRef
-                        .update("id", it.id)
-                }
-                .addOnFailureListener {
-                    println("testss2 ${it.localizedMessage}")
-                }
-        }
-
     }
 
     private fun setBottomBar() {

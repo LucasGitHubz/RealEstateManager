@@ -1,6 +1,9 @@
 package com.example.realestatemanager
 
+import android.app.Application
+import android.content.Context
 import android.util.Log
+import com.example.realestatemanager.database.RealEstateManagerDatabase
 import com.example.realestatemanager.model.Property
 import com.google.android.gms.common.api.Response
 import com.google.android.gms.tasks.OnCompleteListener
@@ -30,5 +33,13 @@ class PropertyService : PropertyRepository {
                     task.exception?.let { continuation.resumeWithException(it) }
                 }
             }
+
+    }
+
+    override suspend fun sendProperties(properties: List<Property>) = suspendCoroutine<Boolean> { continuation ->
+        properties.forEach { property ->
+            db.collection("Properties").document(property.id).set(property)
+        }
+        continuation.resumeWith(Result.success(true))
     }
 }

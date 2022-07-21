@@ -19,7 +19,8 @@ abstract class RealEstateManagerDatabase : RoomDatabase()  {
         fun getInstance(context: Context) : RealEstateManagerDatabase{
             if (INSTANCE == null){
                 synchronized(this){
-                    INSTANCE = Room.databaseBuilder(context.applicationContext,RealEstateManagerDatabase::class.java,"RealEstateManager.db").build()
+                    INSTANCE = Room.databaseBuilder(context.applicationContext,RealEstateManagerDatabase::class.java,"RealEstateManager.db")
+                        .build()
                 }
             }
             return INSTANCE as RealEstateManagerDatabase

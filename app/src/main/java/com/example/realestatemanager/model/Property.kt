@@ -23,6 +23,7 @@ class Property() : Parcelable {
     var status: Boolean = false
     var surface: Double = 0.0
     var type: String? = ""
+    var dateOfUpdate: String? = ""
 
     constructor(parcel: Parcel) : this() {
         id = parcel.readString().toString()
@@ -39,6 +40,7 @@ class Property() : Parcelable {
         status = parcel.readByte() != 0.toByte()
         surface = parcel.readDouble()
         type = parcel.readString()
+        dateOfUpdate = parcel.readString()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -56,6 +58,7 @@ class Property() : Parcelable {
         parcel.writeByte(if (status) 1 else 0)
         parcel.writeDouble(surface)
         parcel.writeString(type)
+        parcel.writeString(dateOfUpdate)
     }
 
     override fun describeContents(): Int {
@@ -88,6 +91,7 @@ class Property() : Parcelable {
             if (values.containsKey("status")) property.status = values.getAsBoolean("status")
             if (values.containsKey("surface")) property.surface = values.getAsDouble("surface")
             if (values.containsKey("type")) property.type = values.getAsString("type")
+            if (values.containsKey("dateOfUpdate")) property.dateOfUpdate = values.getAsString("dateOfUpdate")
 
             return property
         }
