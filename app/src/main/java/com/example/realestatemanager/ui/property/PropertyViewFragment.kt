@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.loader.content.AsyncTaskLoader
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.realestatemanager.R
 import com.example.realestatemanager.Utils
 import com.example.realestatemanager.database.RealEstateManagerDatabase
 import com.example.realestatemanager.databinding.FragmentPropertyViewBinding
@@ -92,6 +93,7 @@ class PropertyViewFragment : Fragment() {
         }
 
         viewModel.sendAction(PropertyAction.SendProperties(newPropertiesList))
+        context?.let { fragmentPropertyViewBinding?.numberOfPropertyTv?.text = it.getString(R.string.propertiesFound, newPropertiesList.size) }
         initPropertyRecyclerView(newPropertiesList)
     }
 

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">RealEstateManager</string>
+    <string name="filters">Filters</string>
+    <string name="apartment">Apartment</string>
+    <string name="house">House</string>
+    <string name="propertiesFound">%d properties sort by relevancy</string>
 </resources>

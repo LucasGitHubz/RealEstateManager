@@ -42,4 +42,12 @@ class PropertyService : PropertyRepository {
         }
         continuation.resumeWith(Result.success(true))
     }
+
+    override suspend fun updateProperty(property: Property): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun deleteProperty(property: Property): Boolean {
+        TODO("Not yet implemented")
+    }
 }
