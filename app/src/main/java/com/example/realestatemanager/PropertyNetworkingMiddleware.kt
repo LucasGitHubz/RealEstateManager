@@ -27,6 +27,11 @@ class PropertyNetworkingMiddleware(
                     store.dispatch(PropertyAction.FetchingFailed(null))
                 }
             }
+            is PropertyAction.SendProperties -> {
+                val propertiesSent: Boolean = propertyRepository.sendProperties(action.properties)
+                if (propertiesSent) { store.dispatch(PropertyAction.SendingCompleted) }
+            }
+            else -> {}
         }
     }
 }

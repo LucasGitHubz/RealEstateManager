@@ -17,6 +17,7 @@ import com.example.realestatemanager.model.Property
 import com.google.firebase.firestore.auth.User
 import kotlinx.coroutines.flow.collect
 import java.text.DateFormat
+import java.text.ParseException
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -74,8 +75,15 @@ class PropertyViewFragment : Fragment() {
         newPropertiesList.addAll(propertiesList)
         for (index in propertiesList.indices) {
             if ((properties.size - 1 >= index) && properties[index].id == propertiesList[index].id) {
-                val dateFromFirestore = Utils().fullDateFormat.parse(properties[index].dateOfUpdate ?: "") ?: Date()
-                val dateFromRoom = Utils().fullDateFormat.parse(propertiesList[index].dateOfUpdate ?: "") ?: Date()
+                var dateFromFirestore = Date()
+                var dateFromRoom = Date()
+                try {
+                    dateFromFirestore = Utils().fullDateFormat.parse(properties[index].dateOfUpdate ?: "") ?: Date()
+                    dateFromRoom = Utils().fullDateFormat.parse(propertiesList[index].dateOfUpdate ?: "") ?: Date()
+                } catch (e: ParseException) {
+                    println(e.localizedMessage)
+                }
+
                 if (dateFromRoom < dateFromFirestore) {
                     newPropertiesList[index] = properties[index]
                     Thread { this.database.propertyDao().updateProperty(newPropertiesList[index]) }.start()
@@ -83,7 +91,7 @@ class PropertyViewFragment : Fragment() {
             }
         }
 
-        //viewModel.sendAction(PropertyAction.SendProperties(newPropertiesList))
+        viewModel.sendAction(PropertyAction.SendProperties(newPropertiesList))
         initPropertyRecyclerView(newPropertiesList)
     }
 
