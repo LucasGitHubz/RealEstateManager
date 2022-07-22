@@ -4,4 +4,12 @@
     <string name="apartment">Apartment</string>
     <string name="house">House</string>
     <string name="propertiesFound">%d properties sort by relevancy</string>
+    <string name="details">Details</string>
+    <string name="price">Price</string>
+    <string name="type">Type</string>
+    <string name="beds">Beds</string>
+    <string name="bathrooms">Bathrooms</string>
+    <string name="surface">surface</string>
+    <string name="realEstateAgent">REAL ESTATE AGENT</string>
+    <string name="lastUpdate">Last update: %s</string>
 </resources>
