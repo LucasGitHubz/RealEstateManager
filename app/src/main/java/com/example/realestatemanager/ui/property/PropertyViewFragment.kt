@@ -1,5 +1,6 @@
 package com.example.realestatemanager.ui.property
 
+import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.loader.content.AsyncTaskLoader
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.realestatemanager.PropertyDetailsActivity
 import com.example.realestatemanager.R
 import com.example.realestatemanager.Utils
 import com.example.realestatemanager.database.RealEstateManagerDatabase
@@ -23,7 +25,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class PropertyViewFragment : Fragment() {
+class PropertyViewFragment : Fragment(), PropertyRecyclerViewAdapter.DidSelectProperty {
     private lateinit var viewModel: PropertyViewModel
     private lateinit var database: RealEstateManagerDatabase
 
@@ -109,7 +111,15 @@ class PropertyViewFragment : Fragment() {
     private fun initPropertyRecyclerView(propertiesList: List<Property>) {
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         fragmentPropertyViewBinding?.propertyRv?.layoutManager = layoutManager
-        val adapter = context?.let { PropertyRecyclerViewAdapter(propertiesList, it) }
+        val adapter = context?.let { PropertyRecyclerViewAdapter(propertiesList, this, it) }
         fragmentPropertyViewBinding?.propertyRv?.adapter = adapter
+    }
+
+    override fun selectProperty(property: Property) {
+        context?.let {
+            val intent = Intent(it, PropertyDetailsActivity::class.java)
+            intent.putExtra("property", property)
+            startActivity(intent)
+        }
     }
 }

@@ -28,6 +28,8 @@
             android:authorities="com.example.realestatemanager.provider"
             android:name=".provider.PropertyContentProvider"
             android:exported="true"/>
+        <activity android:name=".PropertyDetailsActivity"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

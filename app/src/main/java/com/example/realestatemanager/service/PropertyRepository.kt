@@ -1,4 +1,4 @@
-package com.example.realestatemanager
+package com.example.realestatemanager.service
 
 import android.content.Context
 import com.example.realestatemanager.model.Property

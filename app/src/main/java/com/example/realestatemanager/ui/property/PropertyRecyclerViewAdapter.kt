@@ -6,13 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.realestatemanager.R
 import com.example.realestatemanager.model.Property
 import com.squareup.picasso.Picasso
 
-class PropertyRecyclerViewAdapter(private var properties: List<Property>, private var context: Context) :
+class PropertyRecyclerViewAdapter(private var properties: List<Property>, private var didSelectProperty: DidSelectProperty, private var context: Context) :
     RecyclerView.Adapter<PropertyRecyclerViewAdapter.PropertyViewHolder>() {
+
+    interface DidSelectProperty {
+        fun selectProperty(property: Property)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PropertyViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.layout_property_item, parent, false)
@@ -31,6 +36,8 @@ class PropertyRecyclerViewAdapter(private var properties: List<Property>, privat
         holder.numberOfRoomsTV.text = property.rooms.toString()
         holder.numberOfBathroomsTV.text = property.bathrooms.toString()
         holder.surfaceTV.text = "${property.surface} m2"
+
+        holder.propertyCV.setOnClickListener { didSelectProperty.selectProperty(property) }
     }
 
     override fun getItemCount(): Int {
@@ -38,6 +45,7 @@ class PropertyRecyclerViewAdapter(private var properties: List<Property>, privat
     }
 
     class PropertyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var propertyCV: CardView = itemView.findViewById(R.id.property_cv)
         var propertyIV: ImageView = itemView.findViewById(R.id.property_iv)
         var priceTV: TextView = itemView.findViewById(R.id.price_tv)
         var addressTV: TextView = itemView.findViewById(R.id.address_tv)

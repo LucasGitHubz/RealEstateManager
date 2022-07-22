@@ -1,6 +1,5 @@
-package com.example.realestatemanager
+package com.example.realestatemanager.service
 
-import android.app.Application
 import com.example.realestatemanager.redux.Middleware
 import com.example.realestatemanager.redux.Store
 import com.example.realestatemanager.ui.property.PropertyAction

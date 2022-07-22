@@ -1,4 +1,4 @@
-package com.example.realestatemanager
+package com.example.realestatemanager.service
 
 import android.util.Log
 import com.example.realestatemanager.redux.Action

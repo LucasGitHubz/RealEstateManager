@@ -12,4 +12,5 @@
     <string name="surface">surface</string>
     <string name="realEstateAgent">REAL ESTATE AGENT</string>
     <string name="lastUpdate">Last update: %s</string>
+    <string name="unknown">Unknown</string>
 </resources>

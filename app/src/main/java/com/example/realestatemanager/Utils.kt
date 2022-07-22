@@ -30,6 +30,7 @@ class Utils {
         }
 
     val fullDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
 
     /**
      * Vérification de la connexion réseau

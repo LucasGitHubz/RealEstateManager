@@ -1,16 +1,8 @@
-package com.example.realestatemanager
+package com.example.realestatemanager.service
 
-import android.app.Application
-import android.content.Context
-import android.util.Log
-import com.example.realestatemanager.database.RealEstateManagerDatabase
 import com.example.realestatemanager.model.Property
-import com.google.android.gms.common.api.Response
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine

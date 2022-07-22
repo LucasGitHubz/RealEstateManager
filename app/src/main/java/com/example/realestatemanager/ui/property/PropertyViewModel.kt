@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.realestatemanager.PropertyMiddleware
-import com.example.realestatemanager.PropertyNetworkingMiddleware
-import com.example.realestatemanager.PropertyService
+import com.example.realestatemanager.service.PropertyMiddleware
+import com.example.realestatemanager.service.PropertyNetworkingMiddleware
+import com.example.realestatemanager.service.PropertyService
 import com.example.realestatemanager.database.RealEstateManagerDatabase
 import com.example.realestatemanager.model.Property
 import com.example.realestatemanager.redux.Store
